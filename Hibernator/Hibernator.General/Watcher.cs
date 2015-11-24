@@ -10,17 +10,22 @@ namespace Hibernator.General
 {
     public class Watcher
     {
+        private readonly IMessageDisplayer _messageDisplayer;
+        private DateTime _from;
+        private bool _hibernatedBefore;
         private int _timeOut = 1;
-
+        
         public void UpdateParams(int timeout)
         {
             _timeOut = timeout;
             Console.WriteLine("Current timeout: " + (_timeOut));
         }
-
-        public void Print()
+      
+        public Watcher(IMessageDisplayer messageDisplayer, DateTime from, bool hibernatedBefore)
         {
-            Console.WriteLine("Current timeout: " + (_timeOut * 60000) * 10);
+            _messageDisplayer = messageDisplayer;
+            _from = @from;
+            _hibernatedBefore = hibernatedBefore;
         }
 
         public void Watch()
@@ -32,10 +37,31 @@ namespace Hibernator.General
             Console.WriteLine(DateTime.Now + " - idle for " + answer);
             if (idle > ((_timeOut * 60000)))
             {
-                Console.WriteLine("shutting down at " + DateTime.Now);
-                EnvironmentInfo.SetSuspendState(true, true, true);
-
+                if (_hibernatedBefore)
+                {
+                    var suspendAt = _from.AddMinutes(_timeOut);
+                    if (DateTime.Now > suspendAt)
+                    {
+                        _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
+                        //Hibernator.SetSuspendState(true, true, true);
+                        UpdateParamsAfterSuspend();
+                    }
+                }
+                else
+                {
+                    _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
+                    //Hibernator.SetSuspendState(true, true, true);
+                    UpdateParamsAfterSuspend();
+                }
             }
+        }
+
+        public void UpdateParamsAfterSuspend()
+        {
+            _from = DateTime.Now;
+            _hibernatedBefore = true;
+            _messageDisplayer.DisplayMessage("Updated params after suspend.");
+
         }
     }
 }

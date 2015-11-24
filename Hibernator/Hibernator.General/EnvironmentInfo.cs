@@ -6,44 +6,54 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hibernator.General
-	{
-	public class EnvironmentInfo
-		{
-		[DllImport("Powrprof.dll",CharSet = CharSet.Auto,ExactSpelling = true)]
-		public static extern bool SetSuspendState(bool hiberate,bool forceCritical,bool disableWakeEvent);
+{
+    public class EnvironmentInfo
+    {
+        [DllImport("User32.dll")]
+        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
-		[DllImport("User32.dll")]
-		private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+        [DllImport("Kernel32.dll")]
+        private static extern uint GetLastError();
 
-		[DllImport("Kernel32.dll")]
-		private static extern uint GetLastError();
+        public static uint GetIdleTime()
+        {
+            LASTINPUTINFO lastInPut = new LASTINPUTINFO();
+            lastInPut.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(lastInPut);
+            GetLastInputInfo(ref lastInPut);
 
-		public static uint GetIdleTime()
-			{
-			LASTINPUTINFO lastInPut = new LASTINPUTINFO();
-			lastInPut.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(lastInPut);
-			GetLastInputInfo(ref lastInPut);
-			return ((uint)Environment.TickCount - lastInPut.dwTime);
-			}
+            //TimeSpan t = TimeSpan.FromMilliseconds(millisecond);
+            //format(t);
+            //var s = TimeSpan.FromMilliseconds(lastInPut.dwTime);
+            //format(s);
 
-		public static long GetLastInputTime()
-			{
-			LASTINPUTINFO lastInPut = new LASTINPUTINFO();
-			lastInPut.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(lastInPut);
+            return ((uint)Environment.TickCount - lastInPut.dwTime);
+          //  return ((uint)millisecond - lastInPut.dwTime);
+        }
 
-			if(!GetLastInputInfo(ref lastInPut))
-				{
-				throw new Exception(GetLastError().ToString());
-				}
+        private static void format(TimeSpan t)
+        {
+            string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s{3:D2}ms", t.Hours, t.Minutes, t.Seconds,t.Milliseconds);
+            Console.WriteLine(answer);
+        }
 
-			return lastInPut.dwTime;
-			}
+        public static long GetLastInputTime()
+        {
+            LASTINPUTINFO lastInPut = new LASTINPUTINFO();
+            lastInPut.cbSize = (uint)Marshal.SizeOf(lastInPut);
 
-		internal struct LASTINPUTINFO
-			{
-			public uint cbSize;
+            if (!GetLastInputInfo(ref lastInPut))
+            {
+                throw new Exception(GetLastError().ToString());
+            }
 
-			public uint dwTime;
-			}
-		}
-	}
+            return lastInPut.dwTime;
+        }
+
+        internal struct LASTINPUTINFO
+        {
+            public uint cbSize;
+
+            public uint dwTime;
+        }
+    }
+}

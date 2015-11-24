@@ -5,19 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace Hibernator.ConsoleHost
 {
     public class Program
     {
-        static Watcher w = new Watcher();
+        static Watcher w = new Watcher(DateTime.Now,false);
         static Thread listenThread = new Thread(Listener);
         static Thread watcherThread = new Thread(Watch);
         static ManualResetEvent _suspendEvent = new ManualResetEvent(true);
-
         public static void Main(string[] args)
         {
-
             var started = DateTime.Now;
             Console.WriteLine("Started hibernate watch at " + started);
             listenThread = new Thread(Listener);
@@ -26,7 +25,6 @@ namespace Hibernator.ConsoleHost
             watcherThread.Start();
         }
 
-
         public static void Watch()
         {
             while (true)
@@ -34,17 +32,14 @@ namespace Hibernator.ConsoleHost
                 _suspendEvent.WaitOne(Timeout.Infinite);
                 w.Watch();
             }
-
         }
 
         public static void Listener()
         {
             while (true)
             {
-
                 if ((!(Console.KeyAvailable && Console.ReadLine() == "change")))
                 {
-
                 }
                 else
                 {
@@ -62,6 +57,5 @@ namespace Hibernator.ConsoleHost
             var newT = Convert.ToInt16(newTimeout);
             w.UpdateParams(newT);
         }
-
     }
 }
