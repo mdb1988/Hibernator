@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hibernator.ConsoleHost", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hibernator.General", "Hibernator.General\Hibernator.General.csproj", "{5C16F786-29D6-4AFD-BD36-34F1C9C01398}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hibernator.DependencyInjection", "Hibernator.DependencyInjection\Hibernator.DependencyInjection.csproj", "{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hibernator.WindowsFormsHost", "Hibernator.WindowsFormsHost\Hibernator.WindowsFormsHost.csproj", "{C36053CF-E957-494F-8BF2-D8F7266D4522}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5C16F786-29D6-4AFD-BD36-34F1C9C01398}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C16F786-29D6-4AFD-BD36-34F1C9C01398}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C16F786-29D6-4AFD-BD36-34F1C9C01398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C36053CF-E957-494F-8BF2-D8F7266D4522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36053CF-E957-494F-8BF2-D8F7266D4522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36053CF-E957-494F-8BF2-D8F7266D4522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36053CF-E957-494F-8BF2-D8F7266D4522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

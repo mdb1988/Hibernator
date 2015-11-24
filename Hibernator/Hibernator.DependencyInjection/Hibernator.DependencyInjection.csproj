@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{199C832A-3848-418C-80B1-C900BF57A889}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hibernator.ConsoleHost</RootNamespace>
-    <AssemblyName>Hibernator.ConsoleHost</AssemblyName>
+    <RootNamespace>Hibernator.DependencyInjection</RootNamespace>
+    <AssemblyName>Hibernator.DependencyInjection</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,20 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ConsoleHibernator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsFormsHibernator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hibernator.DependencyInjection\Hibernator.DependencyInjection.csproj">
-      <Project>{7355FFBD-AD83-44CB-ADB0-E9A9E0723451}</Project>
-      <Name>Hibernator.DependencyInjection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hibernator.General\Hibernator.General.csproj">
-      <Project>{5c16f786-29d6-4afd-bd36-34f1c9c01398}</Project>
+      <Project>{5C16F786-29D6-4AFD-BD36-34F1C9C01398}</Project>
       <Name>Hibernator.General</Name>
     </ProjectReference>
   </ItemGroup>

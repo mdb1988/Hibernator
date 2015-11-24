@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationMode.cs" />
     <Compile Include="EnvironmentInfo.cs" />
     <Compile Include="Hibernator.cs" />
     <Compile Include="IMessageDisplayer.cs" />
