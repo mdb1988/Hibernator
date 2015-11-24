@@ -14,7 +14,7 @@ namespace Hibernator.ConsoleHost
     {
         public static void Main(string[] args)
         {
-            var cont = Bootstrapper.LoadConfigFor(ApplicationMode.Console);
+            var cont = Bootstrapper.LoadConfigFor(ApplicationMode.Console,null);
             var worker = cont.GetInstance<IWorker>();
             worker.Work();
         }

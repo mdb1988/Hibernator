@@ -28,16 +28,17 @@ namespace Hibernator.General
 
         public void Watch()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(100000);
             var idle = EnvironmentInfo.GetIdleTime();
             TimeSpan t = TimeSpan.FromMilliseconds(idle);
             string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
             _messageDisplayer.DisplayMessage(DateTime.Now + " - idle for " + answer);
-            if (idle > ((_timeOut * 60000)))
+            if (idle > ((_timeOut * 6000)))
             {
                 if (_hibernatedBefore)
                 {
                     var suspendAt = _from.AddMinutes(_timeOut);
+                    _messageDisplayer.DisplayMessage("Idle time reached. Will suspend at " + suspendAt);
                     if (DateTime.Now > suspendAt)
                     {
                         _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);

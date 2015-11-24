@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using Hibernator.General;
 using StructureMap.Configuration.DSL;
 
@@ -12,10 +13,10 @@ namespace Hibernator.DependencyInjection
 {
     public class WindowsFormsHibernator : Registry
     {
-        public WindowsFormsHibernator()
+        public WindowsFormsHibernator(Control form)
         {
-            For<IWorker>().Use<ConsoleWorker>();
-            For<IMessageDisplayer>().Use<WindowsForms>();
+            For<IWorker>().Use<WindowsFormsWorker>();
+            For<IMessageDisplayer>().Use<WindowsFormsMessageDisplayer>().Ctor<Control>("form").Is(form);
         }
     }
 }
