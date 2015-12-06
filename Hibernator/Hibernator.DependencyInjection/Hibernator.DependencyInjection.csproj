@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ConsoleHibernator.cs" />
+    <Compile Include="ConsoleHibernatorRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowsFormsHibernator.cs" />
+    <Compile Include="WindowsFormsHibernatorRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

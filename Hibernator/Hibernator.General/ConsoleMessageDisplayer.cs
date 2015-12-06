@@ -6,7 +6,7 @@ namespace Hibernator.General
     {
         public void DisplayMessage(string msg)
         {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(msg);
         }
     }

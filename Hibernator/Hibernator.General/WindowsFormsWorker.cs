@@ -14,7 +14,6 @@ namespace Hibernator.General
         {
             _idleWatcher = idleWatcher;
             _watcherThread = new Thread(CheckIdleTime);
-           // _listenerThread = new Thread(Listen);
         }
 
         public void CheckIdleTime()
@@ -26,14 +25,6 @@ namespace Hibernator.General
             }
         }
 
-
-        //public void Listen()
-        //{
-        //_suspendEvent.Reset();
-        //Update(TODO);
-        //_suspendEvent.Set();
-        //}
-
         public void Update(int timeout)
         {
             _idleWatcher.UpdateParams(timeout);
@@ -42,7 +33,6 @@ namespace Hibernator.General
         public void Work()
         {
             _watcherThread.Start();
-          //  _listenerThread.Start();
         }
     }
 }

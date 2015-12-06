@@ -11,9 +11,9 @@ using StructureMap.Configuration.DSL;
 
 namespace Hibernator.DependencyInjection
 {
-    public class WindowsFormsHibernator : Registry
+    public class WindowsFormsHibernatorRegistry : Registry
     {
-        public WindowsFormsHibernator(Control form)
+        public WindowsFormsHibernatorRegistry(Control form)
         {
             For<IWorker>().Use<WindowsFormsWorker>();
             For<IMessageDisplayer>().Use<WindowsFormsMessageDisplayer>().Ctor<Control>("form").Is(form);

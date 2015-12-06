@@ -33,7 +33,7 @@ namespace Hibernator.General
             TimeSpan t = TimeSpan.FromMilliseconds(idle);
             string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
             _messageDisplayer.DisplayMessage(DateTime.Now + " - idle for " + answer);
-            if (idle > ((_timeOut * 6000)))
+            if (idle > ((_timeOut * 60000)))
             {
                 if (_hibernatedBefore)
                 {
@@ -42,14 +42,14 @@ namespace Hibernator.General
                     if (DateTime.Now > suspendAt)
                     {
                         _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
-                        //Hibernator.SetSuspendState(true, true, true);
+                        Hibernator.SetSuspendState(true, true, true);
                         UpdateParamsAfterSuspend();
                     }
                 }
                 else
                 {
                     _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
-                    //Hibernator.SetSuspendState(true, true, true);
+                    Hibernator.SetSuspendState(true, true, true);
                     UpdateParamsAfterSuspend();
                 }
             }

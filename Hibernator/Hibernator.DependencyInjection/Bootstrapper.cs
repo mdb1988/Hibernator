@@ -13,20 +13,14 @@ namespace Hibernator.DependencyInjection
 {
     public class Bootstrapper
     {
-        //private static readonly Dictionary<ApplicationMode,Registry> Dictionary = new Dictionary<ApplicationMode, Registry>()
-        //{
-        //    {ApplicationMode.Console, new ConsoleHibernator()},
-        //    {ApplicationMode.WindowsFormsMessageDisplayer, new WindowsFormsHibernator()},
-        //};
-
         public static IContainer LoadConfigFor(ApplicationMode mode,Control form = null)
         {
             Registry reg = null;
             switch (mode)
             {
-                case ApplicationMode.Console: reg = new ConsoleHibernator();
+                case ApplicationMode.Console: reg = new ConsoleHibernatorRegistry();
                     break;
-                case ApplicationMode.WindowsForms: reg = new WindowsFormsHibernator(form);
+                case ApplicationMode.WindowsForms: reg = new WindowsFormsHibernatorRegistry(form);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("mode", mode, null);
