@@ -14,12 +14,12 @@ namespace Hibernator.WindowsFormsHost
 {
     public partial class Form1 : Form
     {
-        IWorker worker;
+        BaseWorker worker;
         public Form1()
         {
             InitializeComponent();
             var cont = Bootstrapper.LoadConfigFor(ApplicationMode.WindowsForms,this.richTextBox1);
-            worker = cont.GetInstance<IWorker>();
+            worker = cont.GetInstance<BaseWorker>();
             worker.Work();
         }
 

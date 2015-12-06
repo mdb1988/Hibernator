@@ -14,7 +14,7 @@ namespace Hibernator.DependencyInjection
     {
         public ConsoleHibernatorRegistry()
         {
-            For<IWorker>().Use<ConsoleWorker>();
+            For<BaseWorker>().Use<ConsoleWorker>();
             For<IMessageDisplayer>().Use<ConsoleMessageDisplayer>();
         }
 

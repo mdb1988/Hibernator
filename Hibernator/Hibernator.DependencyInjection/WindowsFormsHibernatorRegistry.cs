@@ -15,7 +15,7 @@ namespace Hibernator.DependencyInjection
     {
         public WindowsFormsHibernatorRegistry(Control form)
         {
-            For<IWorker>().Use<WindowsFormsWorker>();
+            For<BaseWorker>().Use<WindowsFormsWorker>();
             For<IMessageDisplayer>().Use<WindowsFormsMessageDisplayer>().Ctor<Control>("form").Is(form);
         }
     }

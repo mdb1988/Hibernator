@@ -3,29 +3,15 @@ using System.Threading;
 
 namespace Hibernator.General
 {
-    public class ConsoleWorker : IWorker
+    public class ConsoleWorker : BaseWorker
     {
-        private readonly Watcher _idleWatcher;
-        private readonly Thread _watcherThread;
-        private readonly Thread _listenerThread;
-        readonly ManualResetEvent _suspendEvent = new ManualResetEvent(true);
 
-        public ConsoleWorker(Watcher idleWatcher)
+        public ConsoleWorker(Watcher idleWatcher) : base(idleWatcher)
         {
-            _idleWatcher = idleWatcher;
-            _watcherThread = new Thread(CheckIdleTime);
-            _listenerThread = new Thread(Listen);
+            base._watcherThread = new Thread(base.CheckIdleTime);
+            base._listenerThread = new Thread(Listen);
         }
-
-
-        public void CheckIdleTime()
-        {
-            while (true)
-            {
-                _suspendEvent.WaitOne(Timeout.Infinite);
-                _idleWatcher.Watch();
-            }
-        }
+     
 
         public void Listen()
         {
@@ -36,7 +22,7 @@ namespace Hibernator.General
                 }
                 else
                 {
-                    _suspendEvent.Reset();
+                    base._suspendEvent.Reset();
                     Console.WriteLine("Set new timeout (in minutes)");
                     var newTimeout = Console.ReadLine();
                     var newT = Convert.ToInt16(newTimeout);
@@ -44,17 +30,6 @@ namespace Hibernator.General
                     _suspendEvent.Set();
                 }
             }
-        }
-
-        public void Update(int timeout)
-        {
-            _idleWatcher.UpdateParams(timeout);
-        }
-
-        public void Work()
-        {
-            _watcherThread.Start();
-            _listenerThread.Start();
         }
     }
 }

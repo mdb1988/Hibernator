@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationMode.cs" />
+    <Compile Include="BaseWorker.cs" />
     <Compile Include="ConsoleMessageDisplayer.cs" />
     <Compile Include="ConsoleWorker.cs" />
     <Compile Include="EnvironmentInfo.cs" />
