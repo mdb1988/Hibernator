@@ -17,5 +17,7 @@ namespace Hibernator.General
             var action = new Action(() => _control.Text = msg);
             action.Invoke();
         }
+
+        public string Message { get; set; }
     }
 }

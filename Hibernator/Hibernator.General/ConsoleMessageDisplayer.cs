@@ -9,5 +9,7 @@ namespace Hibernator.General
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(msg);
         }
+
+        public string Message { get; set; }
     }
 }

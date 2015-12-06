@@ -6,5 +6,6 @@ namespace Hibernator.General
     public interface IMessageDisplayer
     {
         void DisplayMessage(string msg);
+        string Message { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Hibernator.General
     public enum ApplicationMode
     {
         Console,
-        WindowsForms
+        WindowsForms,
+        Web
     }
 }

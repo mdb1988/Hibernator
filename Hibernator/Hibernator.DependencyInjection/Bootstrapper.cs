@@ -30,4 +30,5 @@ namespace Hibernator.DependencyInjection
             return container;
         }
     }
+    
 }
