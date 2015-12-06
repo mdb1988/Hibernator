@@ -9,5 +9,6 @@ namespace Hibernator.General
         {
             _watcherThread = new Thread(base.CheckIdleTime);
         }
+
     }
 }

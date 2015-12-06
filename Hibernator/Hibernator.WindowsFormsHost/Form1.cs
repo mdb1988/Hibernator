@@ -21,6 +21,7 @@ namespace Hibernator.WindowsFormsHost
             var cont = Bootstrapper.LoadConfigFor(ApplicationMode.WindowsForms,this.richTextBox1);
             worker = cont.GetInstance<BaseWorker>();
             worker.Work();
+    
         }
 
         private void button1_Click(object sender, EventArgs e)

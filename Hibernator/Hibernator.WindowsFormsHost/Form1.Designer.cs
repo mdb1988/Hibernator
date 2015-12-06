@@ -50,7 +50,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(491, 119);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "test";
+            this.richTextBox1.Text = "";
             // 
             // textBox1
             // 

@@ -14,7 +14,7 @@ namespace Hibernator.General
 
         public void DisplayMessage(string msg)
         {
-            var action = new Action(() => _control.Text = msg);
+            var action = new Action(() => { _control.Text += Environment.NewLine + msg;});
             action.Invoke();
         }
 
