@@ -13,7 +13,7 @@ namespace Hibernator.General
         private readonly IMessageDisplayer _messageDisplayer;
         private DateTime _from = DateTime.Now;
         private bool _hibernatedBefore = false;
-        private int _timeOut = 1;
+        private int _timeOut = 70;
         
         public void UpdateParams(int timeout)
         {
@@ -32,7 +32,7 @@ namespace Hibernator.General
             var idle = EnvironmentInfo.GetIdleTime();
             TimeSpan t = TimeSpan.FromMilliseconds(idle);
             string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
-            _messageDisplayer.DisplayMessage(DateTime.Now + " - idle for " + answer);
+            _messageDisplayer.DisplayMessage("idle for " + answer);
             if (idle > ((_timeOut * 60000)))
             {
                 if (_hibernatedBefore)
