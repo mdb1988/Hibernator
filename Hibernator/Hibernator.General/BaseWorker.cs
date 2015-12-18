@@ -8,7 +8,7 @@ namespace Hibernator.General
         protected  Thread _watcherThread;
         protected  Thread _listenerThread;
         protected readonly ManualResetEvent _suspendEvent = new ManualResetEvent(true);
-
+        object monitor = new object();
         public BaseWorker()
         {
 
@@ -19,9 +19,9 @@ namespace Hibernator.General
             _idleWatcher = idleWatcher;
         }
 
-        public void Update(int timeout)
+        public void Update(int timeout,bool interrupt)
         {
-            _idleWatcher.UpdateParams(timeout);
+            _idleWatcher.UpdateParams(timeout,interrupt);
         }
 
         public void Work()

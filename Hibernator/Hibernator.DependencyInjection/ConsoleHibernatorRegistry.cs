@@ -17,6 +17,7 @@ namespace Hibernator.DependencyInjection
         {
             XmlConfigurator.Configure();
             For<BaseWorker>().Use<ConsoleWorker>();
+            For<Watcher>().Use<Watcher>();
             For<IMessageDisplayer>().Use<ConsoleMessageDisplayer>();
         }
 

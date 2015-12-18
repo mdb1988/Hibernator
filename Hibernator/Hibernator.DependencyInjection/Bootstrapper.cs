@@ -25,6 +25,7 @@ namespace Hibernator.DependencyInjection
                 default:
                     throw new ArgumentOutOfRangeException("mode", mode, null);
             }
+
             var container = new Container(reg);
 
             return container;

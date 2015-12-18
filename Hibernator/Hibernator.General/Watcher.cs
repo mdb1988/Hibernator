@@ -14,21 +14,39 @@ namespace Hibernator.General
         private DateTime _from = DateTime.Now;
         private bool _hibernatedBefore = false;
         private int _timeOut = 70;
+        private bool _interrupt;
+        public object monitor = new object();
         
-        public void UpdateParams(int timeout)
+        public void UpdateParams(int timeout,bool interrupt)
         {
             _timeOut = timeout;
             _messageDisplayer.DisplayMessage("Current timeout: " + (_timeOut));
+            _interrupt = interrupt;
         }
-      
+
+        public void UpdateParams(bool interrupt)
+        {
+            _interrupt = interrupt;
+        }
+
         public Watcher(IMessageDisplayer messageDisplayer)
         {
             _messageDisplayer = messageDisplayer;
+            //_interrupt = interrupt;
         }
 
         public void Watch()
         {
-            Thread.Sleep(1000);
+            lock (monitor)
+            {
+                if (_interrupt)
+                {
+                    return;
+                }
+                Monitor.Wait(monitor, 2000);
+            }
+            
+            
             var idle = EnvironmentInfo.GetIdleTime();
             TimeSpan t = TimeSpan.FromMilliseconds(idle);
             string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
@@ -42,14 +60,14 @@ namespace Hibernator.General
                     if (DateTime.Now > suspendAt)
                     {
                         _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
-                        Hibernator.SetSuspendState(true, true, true);
+                        //Hibernator.SetSuspendState(true, true, true);
                         UpdateParamsAfterSuspend();
                     }
                 }
                 else
                 {
                     _messageDisplayer.DisplayMessage("shutting down at " + DateTime.Now);
-                    Hibernator.SetSuspendState(true, true, true);
+                 //   Hibernator.SetSuspendState(true, true, true);
                     UpdateParamsAfterSuspend();
                 }
             }
